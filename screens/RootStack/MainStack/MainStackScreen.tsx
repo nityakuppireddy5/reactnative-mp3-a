@@ -5,6 +5,8 @@ import FeedScreen from "./FeedScreen/FeedScreen.main";
 import DetailScreen from "./DetailScreen/DetailScreen.main";
 import NewSocialScreen from "../NewSocialScreen/NewSocialScreen.main";
 import { SocialModel } from "../../../models/social";
+import HomeScreen from "./HomeScreen/HomeScreen.main"; 
+
 
 export type MainStackParamList = {
   HomeScreen: undefined;
@@ -25,6 +27,11 @@ export function MainStackScreen() {
     <MainStack.Navigator>
 
       {/* Add your HomeScreen to the MainStack here! */}
+      <MainStack.Screen
+        name="HomeScreen"
+        options={{ headerShown: false }}
+        component={HomeScreen}
+      />
 
       <MainStack.Screen
         name="FeedScreen"
@@ -34,7 +41,7 @@ export function MainStackScreen() {
           headerLeft: () => (
             <Button
               title="Home"
-              onPress={/*TODO*/} // When we click the home button on top left, navigate to HomeScreen
+          onPress={() => navigation.navigate("HomeScreen")} // When we click the home button on top left, navigate to HomeScreen
             />
           ),
           headerTitle: "All Socials",
