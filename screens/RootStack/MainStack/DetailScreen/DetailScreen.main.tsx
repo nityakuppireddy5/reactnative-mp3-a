@@ -19,8 +19,8 @@ const DetailScreen: React.FC<Props> = ({ route, navigation }) => {
 
   return (
     <>
-      <Appbar.Header>
-        <Appbar.BackAction onPress={handleBackPress} />
+      <Appbar.Header style={{ backgroundColor: 'transparent' }}>
+        <Appbar.BackAction onPress={handleBackPress}  />
         <Appbar.Content title="Socials" />
       </Appbar.Header>
       
