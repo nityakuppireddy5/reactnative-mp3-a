@@ -15,11 +15,11 @@ export const styles = StyleSheet.create({
     marginVertical: 10,
     paddingVertical: 10,
     paddingHorizontal: 20,
-    backgroundColor: '#fff', // Add a background color to the buttons
+    backgroundColor: '#2196F3', // Add a background color to the buttons
     borderRadius: 5,
   },
-  Text: {
-    color: '#0096FF',             // Blue text for the buttons
-    fontSize: 20,
+  linkText: {
+    color: '#fff',             // White text for the buttons
+    fontSize: 18,
   },
 });

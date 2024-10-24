@@ -6,41 +6,43 @@ import { Appbar } from "react-native-paper";
 import { MainStackParamList } from "../MainStackScreen";
 import { styles } from "./DetailScreen.styles";
 
+// Define the props using TypeScript interfaces
 interface Props {
   navigation: StackNavigationProp<MainStackParamList, "DetailScreen">;
   route: RouteProp<MainStackParamList, "DetailScreen">;
 }
 
-export default function DetailScreen({ route, navigation }: Props) {
+const DetailScreen: React.FC<Props> = ({ route, navigation }) => {
   const { social } = route.params;
 
-  const Bar = () => {
-    return (
-      <Appbar.Header>
-        <Appbar.BackAction onPress={() => navigation.navigate("FeedScreen")} />
-        <Appbar.Content title="Socials" />
-      </Appbar.Header>
-    );
-  };
+  const handleBackPress = () => navigation.navigate("FeedScreen");
 
   return (
     <>
-      <Bar />
+      <Appbar.Header>
+        <Appbar.BackAction onPress={handleBackPress} />
+        <Appbar.Content title="Socials" />
+      </Appbar.Header>
+      
       <ScrollView style={styles.container}>
         <View style={styles.view}>
           <Image style={styles.image} source={{ uri: social.eventImage }} />
-          <Text style={{ ...styles.h1, marginVertical: 10 }}>
+          <Text style={[styles.h1, { marginVertical: 10 }]}>
             {social.eventName}
           </Text>
-          <Text style={{ ...styles.subtitle, marginBottom: 5 }}>
+          <Text style={[styles.subtitle, { marginBottom: 5 }]}>
             {social.eventLocation}
           </Text>
-          <Text style={{ ...styles.subtitle, marginTop: 5, marginBottom: 20 }}>
+          <Text style={[styles.subtitle, { marginTop: 5, marginBottom: 20 }]}>
             {new Date(social.eventDate).toLocaleString()}
           </Text>
-          <Text style={styles.body}>{social.eventDescription}</Text>
+          <Text style={styles.body}>
+            {social.eventDescription}
+          </Text>
         </View>
       </ScrollView>
     </>
   );
-}
+};
+
+export default DetailScreen;

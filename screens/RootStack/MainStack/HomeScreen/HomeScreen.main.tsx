@@ -1,36 +1,35 @@
-import { RouteProp } from "@react-navigation/native";
+import React from 'react';
+import { View, Text, TouchableWithoutFeedback } from 'react-native';
+import { styles } from './HomeScreen.styles'; 
 import { StackNavigationProp } from "@react-navigation/stack";
-import React from "react";
-import { ScrollView, Image, Text, View } from "react-native";
-import { Appbar } from "react-native-paper";
-import { MainStackParamList } from "../MainStackScreen";
-import { styles } from "./HomeScreen.styles";
+import { MainStackParamList } from "../MainStackScreen.js";
 
-
-type HomeScreenNavigationProp = StackNavigationProp<MainStackParamList, "HomeScreen">;
-
-interface Props {
+interface HomeScreenProps {
     navigation: StackNavigationProp<MainStackParamList, "HomeScreen">;
 }
 
-export default function HomeScreen({ navigation }: Props) {
-//   Appbar Header
-  const Bar = () => {
-    return (
-      <Appbar.Header>
-        <Appbar.Content title="Home" />
-      </Appbar.Header>
-    );
+const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
+  const handleNavigation = (screen: keyof MainStackParamList) => {
+    navigation.navigate(screen);
   };
 
   return (
-    <>
-      <Bar />
-      {/* <ScrollView style={styles.container}> */}
-        <View style={styles.view}>
-          <Text style={styles.title}>Welcome to the Home Screen!</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Welcome to MDB Socials!</Text>
+
+      <TouchableWithoutFeedback onPress={() => handleNavigation('FeedScreen')}>
+        <View style={styles.button}>
+          <Text style={styles.linkText}>View events</Text>
         </View>
-      {/* </ScrollView> */}
-    </>
+      </TouchableWithoutFeedback>
+
+      <TouchableWithoutFeedback onPress={() => handleNavigation('NewSocialScreen')}>
+        <View style={styles.button}>
+          <Text style={styles.linkText}>Create new event</Text>
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
   );
 }
+
+export default HomeScreen;
